@@ -25,9 +25,10 @@
                 <li class="sidebar-brand"><a href="/">Start Bootstrap</a></li>
                 <li class="sidebar-nav-item"><a href="#page-top">Home</a></li>
                 <li class="sidebar-nav-item"><a href="#about">About</a></li>
-                <li class="sidebar-nav-item"><a href="#services">Services</a></li>
+                <li class="sidebar-nav-item"><a href="#skill">skill</a></li>
                 <li class="sidebar-nav-item"><a href="#portfolio">Portfolio</a></li>
-                <li class="sidebar-nav-item"><a href="#contact">Contact</a></li>
+                <li class="sidebar-nav-item"><a href="#Login">Login</a></li>
+                <li class="sidebar-nav-item"><a href="#admin">admin</a></li>
             </ul>
         </nav>
         <!-- Callout-->
