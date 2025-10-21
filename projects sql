@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- 생성 시간: 25-10-20 19:11
+-- 생성 시간: 25-10-21 18:52
 -- 서버 버전: 10.4.32-MariaDB
 -- PHP 버전: 8.2.12
 
@@ -32,8 +32,19 @@ CREATE TABLE `projects` (
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `img` varchar(255) DEFAULT NULL,
+  `original_name` varchar(255) DEFAULT NULL,
+  `stored_name` varchar(255) DEFAULT NULL,
+  `ext` varchar(10) DEFAULT NULL,
+  `size` int(11) DEFAULT NULL,
   `wdate` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 테이블의 덤프 데이터 `projects`
+--
+
+INSERT INTO `projects` (`id`, `title`, `description`, `img`, `original_name`, `stored_name`, `ext`, `size`, `wdate`) VALUES
+(2, 'ㄴㄴ', 'ㄴㄴ', '20251021185036NWuki.jfif', '팥빙수.jfif', '20251021185036NWuki.jfif', 'jfif', 29996, '2025-10-22 01:50:36');
 
 --
 -- 덤프된 테이블의 인덱스
@@ -53,7 +64,7 @@ ALTER TABLE `projects`
 -- 테이블의 AUTO_INCREMENT `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
