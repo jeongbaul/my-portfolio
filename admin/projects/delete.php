@@ -7,7 +7,6 @@ if (!$id) {
     die("삭제할 프로젝트 ID가 없습니다.");
 }
 
-// 기존 이미지가 있으면 서버에서 삭제
 $sql = "SELECT img FROM projects WHERE id = $id";
 $result = mysqli_query($conn, $sql);
 if ($row = mysqli_fetch_assoc($result)) {
@@ -16,7 +15,6 @@ if ($row = mysqli_fetch_assoc($result)) {
     }
 }
 
-// DB에서 삭제
 $sql = "DELETE FROM projects WHERE id = $id";
 if (mysqli_query($conn, $sql)) {
     echo "<script>

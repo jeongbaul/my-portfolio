@@ -7,7 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
 
     if ($id && $pw && $name) {
-        // ID 중복 확인
         $check_sql = "SELECT COUNT(*) FROM users WHERE id = ?";
         $check_stmt = mysqli_prepare($conn, $check_sql);
         mysqli_stmt_bind_param($check_stmt, "s", $id);
@@ -21,10 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        // 비밀번호 암호화
         $hashed_pw = password_hash($pw, PASSWORD_DEFAULT);
 
-        // 회원가입 쿼리 (level은 자동으로 2)
         $sql = "INSERT INTO users (id, pw, name, level) VALUES (?, ?, ?, 2)";
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "sss", $id, $hashed_pw, $name);

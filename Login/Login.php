@@ -4,7 +4,6 @@ session_start();
 
 $error = "";
 
-// 폼 전송 시 처리
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id = trim($_POST['username'] ?? '');
     $pw = trim($_POST['password'] ?? '');
@@ -12,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($id === "" || $pw === "") {
         $error = "아이디와 비밀번호를 모두 입력해주세요.";
     } else {
-        // 사용자 확인
         $stmt = mysqli_prepare($conn, "SELECT pw, name, level FROM users WHERE id = ?");
         mysqli_stmt_bind_param($stmt, "s", $id);
         mysqli_stmt_execute($stmt);
@@ -23,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             mysqli_stmt_fetch($stmt);
 
             if (password_verify($pw, $hashed_pw)) {
-                // 로그인 성공
                 $_SESSION['user_id'] = $id;
                 $_SESSION['user_name'] = $name;
                 $_SESSION['user_level'] = $level;

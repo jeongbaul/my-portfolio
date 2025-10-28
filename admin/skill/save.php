@@ -13,21 +13,17 @@ if (!is_dir($uploadDir)) {
 
 $stored_name = '';
 
-// 새 이미지가 업로드된 경우
 if ($imageFile && $imageFile['tmp_name']) {
     $original_name = $imageFile['name'];
     $ext = strtolower(pathinfo($original_name, PATHINFO_EXTENSION));
 
-    // 중복 방지를 위한 랜덤 문자열 생성
     $random_str = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 5);
 
-    // 서버 저장 파일명 (예: 20251028234759abcde.jpg)
     $stored_name = date("YmdHis") . $random_str . "." . $ext;
 
     $target_path = $uploadDir . $stored_name;
     move_uploaded_file($imageFile['tmp_name'], $target_path);
 
-    // 수정일 경우 기존 파일 삭제
     if ($id) {
         $sqlOld = "SELECT image FROM skills WHERE id = $id";
         $resOld = mysqli_query($conn, $sqlOld);
@@ -40,9 +36,7 @@ if ($imageFile && $imageFile['tmp_name']) {
     }
 }
 
-// DB 저장
 if ($id) {
-    // 수정
     $sql = "UPDATE skills SET 
                 title = '$title', 
                 description = '$description'";
@@ -53,12 +47,10 @@ if ($id) {
 
     $sql .= " WHERE id = $id";
 } else {
-    // 신규 등록
     $sql = "INSERT INTO skills (title, description, image) 
             VALUES ('$title', '$description', '$stored_name')";
 }
 
-// 실행 결과
 if (mysqli_query($conn, $sql)) {
     echo "<script>
             alert('스킬이 성공적으로 저장되었습니다.');

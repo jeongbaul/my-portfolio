@@ -6,7 +6,6 @@ if (!$conn) {
     die("DB 연결 실패: db.php 경로 확인 필요!");
 }
 
-// 삭제 기능
 $id = $_GET['id'] ?? null;
 if ($id) {
     $sql = "DELETE FROM skills WHERE id=$id";
@@ -28,7 +27,6 @@ img { max-width:80px; height:auto; }
 </head>
 <body id="page-top">
 
-<!-- 공통 사이드바 include -->
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/includes/sidebar.php'; ?>
 
 <div class="container mt-5">

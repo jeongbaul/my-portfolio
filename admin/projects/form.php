@@ -7,7 +7,6 @@ $description = '';
 $img = '';
 
 if ($id) {
-    // 수정용 데이터 조회
     $sql = "SELECT * FROM projects WHERE id = $id";
     $result = mysqli_query($conn, $sql);
     if ($row = mysqli_fetch_assoc($result)) {

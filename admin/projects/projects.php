@@ -21,7 +21,6 @@ img { max-width:80px; height:auto; }
 </head>
 <body id="page-top">
 
-<!-- 공통 사이드바 include -->
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/includes/sidebar.php'; ?>
 
 <div class="container mt-5">
@@ -43,7 +42,7 @@ img { max-width:80px; height:auto; }
 
         if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_assoc($result)){
-                $link = $row['link'] ?? '#'; // 링크 없으면 #으로
+                $link = $row['link'] ?? '#';
                 echo "<tr>
                         <td>{$row['id']}</td>
                         <td>".($row['img'] ? "<img src='/uploads/{$row['img']}' alt='project'>" : "")."</td>

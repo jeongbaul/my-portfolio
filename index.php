@@ -6,7 +6,6 @@ if (!$conn) {
     die("DB 연결 실패: db.php 경로 확인 필요!");
 }
 
-// DB에서 skills 가져오기
 $skills = [];
 $sql_skills = "SELECT * FROM skills ORDER BY id DESC";
 $result_skills = mysqli_query($conn, $sql_skills);
@@ -16,7 +15,6 @@ if ($result_skills) {
     }
 }
 
-// DB에서 projects 가져오기
 $projects = [];
 $sql_projects = "SELECT * FROM projects ORDER BY id DESC";
 $result_projects = mysqli_query($conn, $sql_projects);
@@ -40,7 +38,6 @@ if ($result_projects) {
 </head>
 <body id="page-top">
 
-<!-- Navigation (공통 사이드바 include) -->
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/includes/sidebar.php'; ?>
 
 <!-- Header-->
