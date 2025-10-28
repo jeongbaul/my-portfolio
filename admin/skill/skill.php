@@ -48,16 +48,17 @@ img { max-width:80px; height:auto; }
         $sql = "SELECT * FROM skills ORDER BY id DESC";
         $result = mysqli_query($conn, $sql);
 
-        if(mysqli_num_rows($result) > 0){
-            while($row = mysqli_fetch_assoc($result)){
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $imgPath = '/uploads/' . htmlspecialchars($row['image']);
                 echo "<tr>
                         <td>{$row['id']}</td>
-                        <td><img src='{$row['image']}' alt='skill'></td>
-                        <td>{$row['title']}</td>
-                        <td>{$row['description']}</td>
+                        <td><img src='{$imgPath}' alt='skill'></td>
+                        <td>" . htmlspecialchars($row['title']) . "</td>
+                        <td>" . htmlspecialchars($row['description']) . "</td>
                         <td>
-                            <a href='/admin/skill/form.php?id={$row['id']}' class='btn btn-primary'>수정</a>
-                            <a href='/admin/skill/delete.php?id={$row['id']}' class='btn btn-danger' onclick='return confirm(\"정말 삭제하시겠습니까?\")'>삭제</a>
+                            <a href='/admin/skill/form.php?id={$row['id']}' class='btn btn-primary btn-sm'>수정</a>
+                            <a href='/admin/skill/skill.php?id={$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"정말 삭제하시겠습니까?\")'>삭제</a>
                         </td>
                     </tr>";
             }

@@ -18,16 +18,16 @@ if ($imageFile && $imageFile['tmp_name']) {
     $original_name = $imageFile['name'];
     $ext = strtolower(pathinfo($original_name, PATHINFO_EXTENSION));
 
-    // 중복 방지용 랜덤 문자열
+    // 중복 방지를 위한 랜덤 문자열 생성
     $random_str = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 5);
 
-    // 서버에 저장될 파일명
+    // 서버 저장 파일명 (예: 20251028234759abcde.jpg)
     $stored_name = date("YmdHis") . $random_str . "." . $ext;
 
     $target_path = $uploadDir . $stored_name;
     move_uploaded_file($imageFile['tmp_name'], $target_path);
 
-    // 수정일 경우, 기존 파일 삭제
+    // 수정일 경우 기존 파일 삭제
     if ($id) {
         $sqlOld = "SELECT image FROM skills WHERE id = $id";
         $resOld = mysqli_query($conn, $sqlOld);
@@ -58,6 +58,7 @@ if ($id) {
             VALUES ('$title', '$description', '$stored_name')";
 }
 
+// 실행 결과
 if (mysqli_query($conn, $sql)) {
     echo "<script>
             alert('스킬이 성공적으로 저장되었습니다.');

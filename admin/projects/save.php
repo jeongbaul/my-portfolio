@@ -26,14 +26,14 @@ if ($imgFile && $imgFile['tmp_name']) {
     // 중복 방지용 랜덤 5자리 문자열 생성
     $random_str = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 5);
 
-    // 실제 서버 저장 파일명
+    // 실제 서버 저장 파일명 (예: 20251021224211abcde.jpg)
     $stored_name = date("YmdHis") . $random_str . "." . $ext;
 
     // 파일 저장
     $target_path = $uploadDir . $stored_name;
     move_uploaded_file($imgFile['tmp_name'], $target_path);
 
-    // 수정일 경우, 기존 파일 삭제
+    // 수정일 경우 기존 파일 삭제
     if ($id) {
         $sqlOld = "SELECT stored_name FROM projects WHERE id = $id";
         $resOld = mysqli_query($conn, $sqlOld);

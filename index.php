@@ -26,13 +26,12 @@ if ($result_projects) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title>Stylish Portfolio - Start Bootstrap Template</title>
+<title>Stylish Portfolio - Portfolio</title>
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
@@ -59,7 +58,7 @@ if ($result_projects) {
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-lg-10">
                 <h2>제 portfolio를 보러 와주셔서 감사합니다</h2>
-                <p class="lead mb-5">부천북고 3학년9반 22번 정바울</p>
+                <p class="lead mb-5">부천북고 3학년 9반 22번 정바울</p>
                 <a class="btn btn-dark btn-xl" href="#skill">Portfolio My Skill</a>
             </div>
         </div>
@@ -78,7 +77,11 @@ if ($result_projects) {
                 <?php foreach ($skills as $skill) : ?>
                     <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
                         <span class="service-icon rounded-circle mx-auto mb-3">
-                            <img src="<?= htmlspecialchars($skill['image']) ?>" alt="<?= htmlspecialchars($skill['title']) ?>" style="max-width:60px;">
+                            <?php if (!empty($skill['image'])): ?>
+                                <img src="<?= htmlspecialchars($skill['image']) ?>" alt="<?= htmlspecialchars($skill['title']) ?>" style="max-width:60px;">
+                            <?php else: ?>
+                                <i class="icon-screen-smartphone"></i>
+                            <?php endif; ?>
                         </span>
                         <h4><strong><?= htmlspecialchars($skill['title']) ?></strong></h4>
                         <p class="text-faded mb-0"><?= htmlspecialchars($skill['description']) ?></p>
@@ -125,7 +128,7 @@ if ($result_projects) {
 <!-- Footer-->
 <footer class="footer text-center">
     <div class="container px-4 px-lg-5">
-        <p class="text-muted small mb-0">Copyright &copy; Your Website 2023</p>
+        <p class="text-muted small mb-0">Copyright &copy; Jeong Baul Portfolio 2025</p>
     </div>
 </footer>
 
