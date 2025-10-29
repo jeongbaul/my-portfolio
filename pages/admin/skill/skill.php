@@ -5,6 +5,12 @@ include_once "../../lib/db.php";
 if (!$conn) {
     die("DB 연결 실패: db.php 경로 확인 필요!");
 }
+
+$id = $_GET['id'] ?? null;
+if ($id) {
+    $sql = "DELETE FROM skills WHERE id=$id";
+    mysqli_query($conn, $sql);
+}
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +18,7 @@ if (!$conn) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title>프로젝트 관리</title>
+<title>스킬 관리</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link href="/css/styles.css" rel="stylesheet" />
 <style>
@@ -24,9 +30,9 @@ img { max-width:80px; height:auto; }
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/includes/sidebar.php'; ?>
 
 <div class="container mt-5">
-    <h2>프로젝트 관리</h2>
+    <h2>스킬 관리</h2>
     <a href="/index.php" class="btn btn-secondary mb-3">← 뒤로가기</a>
-    <a href="/admin/projects/form.php" class="btn btn-success mb-3">+ 프로젝트 등록</a>
+    <a href="/pages/admin/skill/form.php" class="btn btn-success mb-3">+ 스킬 등록</a>
 
     <table class="table table-striped table-bordered">
         <tr>
@@ -37,25 +43,25 @@ img { max-width:80px; height:auto; }
             <th>관리</th>
         </tr>
         <?php
-        $sql = "SELECT * FROM projects ORDER BY id DESC";
+        $sql = "SELECT * FROM skills ORDER BY id DESC";
         $result = mysqli_query($conn, $sql);
 
-        if(mysqli_num_rows($result) > 0){
-            while($row = mysqli_fetch_assoc($result)){
-                $link = $row['link'] ?? '#';
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $imgPath = '/uploads/' . htmlspecialchars($row['image']);
                 echo "<tr>
                         <td>{$row['id']}</td>
-                        <td>".($row['img'] ? "<img src='/uploads/{$row['img']}' alt='project'>" : "")."</td>
-                        <td><a href='".htmlspecialchars($link)."' target='_blank'>{$row['title']}</a></td>
-                        <td>{$row['description']}</td>
+                        <td><img src='{$imgPath}' alt='skill'></td>
+                        <td>" . htmlspecialchars($row['title']) . "</td>
+                        <td>" . htmlspecialchars($row['description']) . "</td>
                         <td>
-                            <a href='/admin/projects/form.php?id={$row['id']}' class='btn btn-primary'>수정</a>
-                            <a href='/admin/projects/delete.php?id={$row['id']}' class='btn btn-danger' onclick='return confirm(\"정말 삭제하시겠습니까?\")'>삭제</a>
+                            <a href='/admin/skill/form.php?id={$row['id']}' class='btn btn-primary btn-sm'>수정</a>
+                            <a href='/admin/skill/skill.php?id={$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"정말 삭제하시겠습니까?\")'>삭제</a>
                         </td>
                     </tr>";
             }
         } else {
-            echo "<tr><td colspan='5'>등록된 프로젝트가 없습니다.</td></tr>";
+            echo "<tr><td colspan='5'>등록된 스킬이 없습니다.</td></tr>";
         }
         ?>
     </table>

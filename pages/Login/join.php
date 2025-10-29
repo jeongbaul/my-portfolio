@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = mysqli_stmt_execute($stmt);
 
         if ($result) {
-            echo "<script>alert('회원가입 완료! 로그인 페이지로 이동합니다.'); location.href='login.php';</script>";
+            echo "<script>alert('회원가입 완료! 로그인 페이지로 이동합니다.'); location.href='/pages/Login/login.php';</script>";
         } else {
             echo "<script>alert('회원가입 실패: 데이터베이스 오류'); history.back();</script>";
         }
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="text" name="name" placeholder="이름" required>
     <button type="submit">가입하기</button>
   </form>
-  <button class="back-btn" onclick="location.href='login.php'">← 로그인으로</button>
+  <button class="back-btn" onclick="location.href='/pages/Login/login.php'">← 로그인으로</button>
 </div>
 
 </body>
