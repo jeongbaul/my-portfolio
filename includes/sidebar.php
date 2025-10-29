@@ -13,8 +13,8 @@ if (session_status() === PHP_SESSION_NONE) {
         <li class="sidebar-nav-item"><a href="/index.php#about">About</a></li>
         <li class="sidebar-nav-item"><a href="/index.php#skill">Skill</a></li>
         <li class="sidebar-nav-item"><a href="/index.php#portfolio">Portfolio</a></li>
-        <li class="sidebar-nav-item"><a href="/Login/Login.php">Login</a></li>
-        <li class="sidebar-nav-item"><a href="/Login/join.php">Join</a></li>
+        <li class="sidebar-nav-item"><a href="/pages/Login/Login.php">Login</a></li>
+        <li class="sidebar-nav-item"><a href="/admin/skill/skill">Join</a></li>
 
         <?php if (isset($_SESSION['user_level']) && $_SESSION['user_level'] == 1): ?>
             <li class="sidebar-nav-item"><a href="/admin/skill/skill.php">skill</a></li>
