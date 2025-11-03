@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="text" name="name" placeholder="이름" required>
     <button type="submit">가입하기</button>
   </form>
-  <button class="back-btn" onclick="location.href='/pages/Login/login.php'">← 로그인으로</button>
+  <button class="back-btn" onclick="location.href='/Login/login'">← 로그인으로</button>
 </div>
 
 </body>

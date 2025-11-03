@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION['user_name'] = $name;
                 $_SESSION['user_level'] = $level;
 
-                echo "<script>alert('로그인 성공!'); location.href='/index.php';</script>";
+                echo "<script>alert('로그인 성공!'); location.href='/';</script>";
                 exit;
             } else {
                 $error = "비밀번호가 일치하지 않습니다.";

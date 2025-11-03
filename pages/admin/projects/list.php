@@ -1,11 +1,3 @@
-<?php
-session_start();
-include_once "../../lib/db.php";
-
-if (!$conn) {
-    die("DB 연결 실패: db.php 경로 확인 필요!");
-}
-?>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -50,7 +42,7 @@ img.thumbnail:hover {
 
         if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_assoc($result)){
-                $link = $row['link'] ?? '#';
+                $link = $row['link'] ?? '';
                 $imgTag = $row['img'] 
                     ? "<a href='/uploads/{$row['img']}' target='_blank'>
                            <img src='/uploads/{$row['img']}' alt='project' class='thumbnail'>

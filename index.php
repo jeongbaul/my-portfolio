@@ -10,14 +10,6 @@ $action   = isset($_GET['action'])   ? safeParam($_GET['action'])   : "";
 
 include __DIR__ . "/includes/header.php";
 
-if ($debug) {
-    echo "<pre>DEBUG MODE\n";
-    echo "context1 = {$context1}\n";
-    echo "context2 = {$context2}\n";
-    echo "action   = {$action}\n";
-    echo "</pre>";
-}
-
 $basePath = __DIR__ . "/pages";
 
 if ($context1 === "" && $context2 === "" && $action === "") {
@@ -34,10 +26,6 @@ if ($context1 === "" && $context2 === "" && $action === "") {
     if($context1 == "Login"){
         $pagePath = __DIR__ . "/pages/Login/" . $context2 . ".php";
     }
-}
-
-if ($debug) {
-    echo "<pre>Trying to load: {$pagePath}</pre>";
 }
 
 if (file_exists($pagePath)) {
