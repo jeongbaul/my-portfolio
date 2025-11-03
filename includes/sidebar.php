@@ -14,7 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <li class="sidebar-nav-item"><a href="/#skill">Skill</a></li>
         <li class="sidebar-nav-item"><a href="/#portfolio">Portfolio</a></li>
         <li class="sidebar-nav-item"><a href="/Login/Login">Login</a></li>
-        <li class="sidebar-nav-item"><a href="/Login/join">Join</a></li>
+        <li class="sidebar-nav-item"><a href="/admin/skill">Join</a></li>
 
         <?php if (isset($_SESSION['user_level']) && $_SESSION['user_level'] == 1): ?>
             <li class="sidebar-nav-item"><a href="/admin/skill/list">skill</a></li>

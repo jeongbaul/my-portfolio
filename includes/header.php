@@ -37,5 +37,5 @@ if ($result_projects) {
 <link href="css/styles.css" rel="stylesheet" />
 </head>
 <body id="page-top">
-
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/includes/sidebar.php'; ?>
+
