@@ -1,10 +1,4 @@
 <?php
-session_start();
-include_once "../../lib/db.php";
-
-if (!$conn) {
-    die("DB 연결 실패: db.php 경로 확인 필요!");
-}
 
 $id = $_GET['id'] ?? null;
 if ($id) {
