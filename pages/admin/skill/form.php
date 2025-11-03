@@ -1,6 +1,4 @@
 <?php
-include_once "../../lib/db.php";
-
 $id = $_GET['id'] ?? null;
 $skill = [
     'image' => '',
@@ -39,7 +37,7 @@ img { max-width:100px; margin-top:10px; display:block; }
 
 <h2><?= $id ? "스킬 수정" : "스킬 등록" ?></h2>
 
-<form action="save.php" method="post" enctype="multipart/form-data">
+<form action="/admin/skill/save" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?= $id ?>">
 
     <label>이미지 <?= $id && $skill['image'] ? '(현재 이미지 표시)' : '' ?></label>

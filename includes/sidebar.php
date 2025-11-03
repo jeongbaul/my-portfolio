@@ -9,16 +9,16 @@ if (session_status() === PHP_SESSION_NONE) {
 <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <li class="sidebar-brand"><a href="#page-top">sidebar</a></li>
-        <li class="sidebar-nav-item"><a href="/index.php">Home</a></li>
-        <li class="sidebar-nav-item"><a href="/index.php#about">About</a></li>
-        <li class="sidebar-nav-item"><a href="/index.php#skill">Skill</a></li>
-        <li class="sidebar-nav-item"><a href="/index.php#portfolio">Portfolio</a></li>
-        <li class="sidebar-nav-item"><a href="/pages/Login/Login.php">Login</a></li>
-        <li class="sidebar-nav-item"><a href="/admin/skill/skill">Join</a></li>
+        <li class="sidebar-nav-item"><a href="/#">Home</a></li>
+        <li class="sidebar-nav-item"><a href="/#about">About</a></li>
+        <li class="sidebar-nav-item"><a href="/#skill">Skill</a></li>
+        <li class="sidebar-nav-item"><a href="/#portfolio">Portfolio</a></li>
+        <li class="sidebar-nav-item"><a href="/Login/Login">Login</a></li>
+        <li class="sidebar-nav-item"><a href="/Login/join">Join</a></li>
 
         <?php if (isset($_SESSION['user_level']) && $_SESSION['user_level'] == 1): ?>
-            <li class="sidebar-nav-item"><a href="/admin/skill/skill.php">skill</a></li>
-            <li class="sidebar-nav-item"><a href="/admin/projects/projects.php">Projects</a></li>
+            <li class="sidebar-nav-item"><a href="/admin/skill/list">skill</a></li>
+            <li class="sidebar-nav-item"><a href="/admin/projects/list">Projects</a></li>
         <?php endif; ?>
     </ul>
 </nav>
