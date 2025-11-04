@@ -53,7 +53,7 @@ if ($id) {
 if (mysqli_query($conn, $sql)) {
     echo "<script>
             alert('스킬이 성공적으로 저장되었습니다.');
-            location.href='skill.php';
+            location.href='list';
           </script>";
 } else {
     echo 'DB 오류: ' . mysqli_error($conn);

@@ -1,5 +1,4 @@
 <?php
-include_once "../../lib/db.php";
 
 $id = $_GET['id'] ?? null;
 
@@ -19,7 +18,7 @@ $sql = "DELETE FROM projects WHERE id = $id";
 if (mysqli_query($conn, $sql)) {
     echo "<script>
             alert('프로젝트가 삭제되었습니다.');
-            location.href='projects.php';
+            location.href='list';
           </script>";
 } else {
     echo "삭제 실패: " . mysqli_error($conn);

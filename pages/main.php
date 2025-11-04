@@ -1,6 +1,3 @@
-
-
-
 <!-- Header-->
 <header class="masthead d-flex align-items-center">
     <div class="container px-4 px-lg-5 text-center">
@@ -63,7 +60,7 @@
             <?php if (!empty($projects)) : ?>
                 <?php foreach ($projects as $project) : ?>
                     <div class="col-lg-6">
-                        <a class="portfolio-item" href="<?= htmlspecialchars($project['link'] ?? '#') ?>">
+                        <a class="portfolio-item" href="<?= htmlspecialchars($project['link'] ?? '#') ?>" target="_blank">
                             <div class="caption">
                                 <div class="caption-content">
                                     <div class="h2"><?= htmlspecialchars($project['title']) ?></div>
@@ -71,7 +68,10 @@
                                 </div>
                             </div>
                             <?php if (!empty($project['img'])) : ?>
-                                <img class="img-fluid" src="/uploads/<?= htmlspecialchars($project['img']) ?>" alt="<?= htmlspecialchars($project['title']) ?>" />
+                                <!-- ✅ 원본 이미지 원본 비율 그대로 꽉 차게 -->
+                                <img src="/uploads/<?= htmlspecialchars($project['img']) ?>" 
+                                     alt="<?= htmlspecialchars($project['title']) ?>" 
+                                     style="width:100%; height:auto; object-fit:contain;">
                             <?php endif; ?>
                         </a>
                     </div>
@@ -82,5 +82,3 @@
         </div>
     </div>
 </section>
-
-

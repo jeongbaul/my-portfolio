@@ -1,21 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>프로젝트 관리</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/css/styles.css" rel="stylesheet" />
 <style>
 img.thumbnail {
-    max-width: 80px;
+    max-width: 120px;
     height: auto;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.15s;
 }
 img.thumbnail:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 </style>
 </head>
@@ -25,37 +23,50 @@ img.thumbnail:hover {
 
 <div class="container mt-5">
     <h2>프로젝트 관리</h2>
-    <a href="/index.php" class="btn btn-secondary mb-3">← 뒤로가기</a>
-    <a href="/admin/projects/form.php" class="btn btn-success mb-3">+ 프로젝트 등록</a>
+    <a href="/" class="btn btn-secondary mb-3">← 뒤로가기</a>
+    <a href="/admin/projects/form" class="btn btn-success mb-3">+ 프로젝트 등록</a>
 
     <table class="table table-striped table-bordered text-center align-middle">
-        <tr>
-            <th>ID</th>
-            <th>이미지</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>관리</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>썸네일</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>관리</th>
+            </tr>
+        </thead>
+        <tbody>
         <?php
         $sql = "SELECT * FROM projects ORDER BY id DESC";
-        $result = mysqli_query($conn, $sql);
+        $res = mysqli_query($conn, $sql);
 
-        if(mysqli_num_rows($result) > 0){
-            while($row = mysqli_fetch_assoc($result)){
-                $link = $row['link'] ?? '';
-                $imgTag = $row['img'] 
-                    ? "<a href='/uploads/{$row['img']}' target='_blank'>
-                           <img src='/uploads/{$row['img']}' alt='project' class='thumbnail'>
-                       </a>"
-                    : "";
+        if ($res && mysqli_num_rows($res) > 0) {
+            while ($row = mysqli_fetch_assoc($res)) {
+                $fname = $row['stored_name'] ?: $row['img'];
+                $origPath = "/uploads/" . $fname;
+                $thumbPath = "/uploads/thumbnail_" . $fname;
+
+                $thumbExists = ($fname && file_exists($_SERVER['DOCUMENT_ROOT'] . $thumbPath));
+
+                // 썸네일 or 원본 이미지 태그
+                if ($fname) {
+                    $imgSrc = $thumbExists ? $thumbPath : $origPath;
+                    $imgTag = "<a href='" . htmlspecialchars($origPath) . "' target='_blank'>
+                                  <img src='" . htmlspecialchars($imgSrc) . "' class='thumbnail' alt='thumb'>
+                               </a>";
+                } else {
+                    $imgTag = "";
+                }
+
                 echo "<tr>
                         <td>{$row['id']}</td>
                         <td>{$imgTag}</td>
-                        <td><a href='".htmlspecialchars($link)."' target='_blank'>{$row['title']}</a></td>
-                        <td>{$row['description']}</td>
+                        <td>" . htmlspecialchars($row['title']) . "</td>
+                        <td>" . nl2br(htmlspecialchars($row['description'])) . "</td>
                         <td>
-                            <a href='/admin/projects/form.php?id={$row['id']}' class='btn btn-primary btn-sm'>수정</a>
-                            <a href='/admin/projects/delete.php?id={$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"정말 삭제하시겠습니까?\")'>삭제</a>
+                            <a href='/admin/projects/form?id={$row['id']}' class='btn btn-primary btn-sm'>수정</a>
+                            <a href='/admin/projects/delete?id={$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"정말 삭제하시겠습니까?\")'>삭제</a>
                         </td>
                     </tr>";
             }
@@ -63,6 +74,7 @@ img.thumbnail:hover {
             echo "<tr><td colspan='5'>등록된 프로젝트가 없습니다.</td></tr>";
         }
         ?>
+        </tbody>
     </table>
 </div>
 

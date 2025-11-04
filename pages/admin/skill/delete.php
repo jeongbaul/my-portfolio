@@ -7,6 +7,6 @@ if ($id) {
     mysqli_query($conn, $sql);
 }
 
-header("Location: skill.php");
+header("Location: list");
 exit;
 ?>

@@ -25,8 +25,8 @@ img { max-width:80px; height:auto; }
 
 <div class="container mt-5">
     <h2>스킬 관리</h2>
-    <a href="/index.php" class="btn btn-secondary mb-3">← 뒤로가기</a>
-    <a href="/pages/admin/skill/form.php" class="btn btn-success mb-3">+ 스킬 등록</a>
+    <a href="/" class="btn btn-secondary mb-3">← 뒤로가기</a>
+    <a href="/admin/skill/form" class="btn btn-success mb-3">+ 스킬 등록</a>
 
     <table class="table table-striped table-bordered">
         <tr>
@@ -49,8 +49,8 @@ img { max-width:80px; height:auto; }
                         <td>" . htmlspecialchars($row['title']) . "</td>
                         <td>" . htmlspecialchars($row['description']) . "</td>
                         <td>
-                            <a href='/admin/skill/form.php?id={$row['id']}' class='btn btn-primary btn-sm'>수정</a>
-                            <a href='/admin/skill/skill.php?id={$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"정말 삭제하시겠습니까?\")'>삭제</a>
+                            <a href='/admin/skill/form?id={$row['id']}' class='btn btn-primary btn-sm'>수정</a>
+                            <a href='/admin/skill/list?id={$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"정말 삭제하시겠습니까?\")'>삭제</a>
                         </td>
                     </tr>";
             }
