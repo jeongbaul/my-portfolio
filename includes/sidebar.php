@@ -15,7 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <li class="sidebar-nav-item"><a href="/#about">About</a></li>
         <li class="sidebar-nav-item"><a href="/#skill">Skill</a></li>
         <li class="sidebar-nav-item"><a href="/#portfolio">Portfolio</a></li>
-        <li class="sidebar-nav-item"><a href="/Login/Login">Login</a></li>
+        <li class="sidebar-nav-item"><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a></li>
         <li class="sidebar-nav-item"><a href="/Login/join">Join</a></li>
 
         <?php if (isset($_SESSION['user_level']) && $_SESSION['user_level'] == 1): ?>
