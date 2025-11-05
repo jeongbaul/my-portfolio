@@ -34,7 +34,7 @@ if ($imgFile && !empty($imgFile['tmp_name'])) {
 }
 
 // DB 저장/수정
-if ($id) {
+if ($id!="") {
     $sql = "UPDATE projects SET title='".mysqli_real_escape_string($conn,$title)."', description='".mysqli_real_escape_string($conn,$description)."', link='".mysqli_real_escape_string($conn,$link)."'";
     if ($stored_name) {
         $sql .= ", img='".mysqli_real_escape_string($conn,$stored_name)."', original_name='".mysqli_real_escape_string($conn,$original_name)."', stored_name='".mysqli_real_escape_string($conn,$stored_name)."', ext='".mysqli_real_escape_string($conn,$ext)."', size='".intval($size)."'";
@@ -55,7 +55,6 @@ if ($id) {
             )";
     $msg = "등록";
 }
-
 if (mysqli_query($conn, $sql)) {
     echo "<script>alert('프로젝트가 성공적으로 {$msg}되었습니다.'); location.href='list';</script>";
     exit;
@@ -63,7 +62,6 @@ if (mysqli_query($conn, $sql)) {
     echo 'DB 오류: ' . mysqli_error($conn);
     exit;
 }
-
 /**
  * createThumbnail : GD로 썸네일 생성
  * - src: 원본 전체 경로

@@ -45,7 +45,7 @@ if ($id) {
 <a href="/admin/projects/list" class="btn-back">← 뒤로가기</a>
 
 <form action="save" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
+    <input type="hidden" name="id" value="<?=($id) ?>">
     
     <label for="title">Title</label>
     <input type="text" name="title" id="title" value="<?= htmlspecialchars($title) ?>" required>
