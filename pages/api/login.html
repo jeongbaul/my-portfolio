@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+  </head>
+  <body>
+    <h2>로그인</h2>
+
+    <form id="loginForm">
+      <input type="text" id="id" placeholder="아이디" required /><br /><br />
+      <input
+        type="password"
+        id="pw"
+        placeholder="비밀번호"
+        required
+      /><br /><br />
+      <button type="button" id="loginBtn">로그인</button>
+    </form>
+
+    <script>
+      document
+        .getElementById('loginBtn')
+        .addEventListener('click', function () {
+          const id = document.getElementById('id').value;
+          const pw = document.getElementById('pw').value;
+
+          // AJAX (fetch)
+          fetch('/pages/api/login.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: id,
+              pw: pw,
+            }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.status === 'success') {
+                alert('로그인 성공');
+                location.href = '/index.php'; // 성공 시 이동
+              } else {
+                alert('로그인 실패. 아이디 또는 비밀번호가 틀렸습니다.');
+              }
+            })
+            .catch((err) => {
+              alert('오류 발생: ' + err);
+            });
+        });
+    </script>
+  </body>
+</html>
