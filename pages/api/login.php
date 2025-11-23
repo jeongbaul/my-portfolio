@@ -1,5 +1,6 @@
 <?php
 header("Content-Type: application/json");
+session_start();
 
 // DB 연결
 $conn = new mysqli("localhost", "root", "", "portfolio");
@@ -12,7 +13,13 @@ $data = json_decode($json, true);
 $id = $data["id"] ?? "";
 $pw = $data["pw"] ?? "";
 
-// DB 조회 (id, pw 컬럼 사용)
+// 빈값 체크
+if ($id === "" || $pw === "") {
+    echo json_encode(["status" => "error", "msg" => "empty"]);
+    exit;
+}
+
+// DB 조회
 $sql = "SELECT * FROM users WHERE id = ? AND pw = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ss", $id, $pw);
@@ -22,8 +29,12 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     // 로그인 성공
     $_SESSION["user_id"] = $id;
-    echo json_encode(["status" => "success"]);
+
+    echo json_encode([
+        "status" => "success",
+        "user"   => $id
+    ]);
 } else {
     // 로그인 실패
-    echo json_encode(["status" => "error"]);
+    echo json_encode(["status" => "error", "msg" => "wrong"]);
 }

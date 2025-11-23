@@ -1,12 +1,17 @@
 <?php
 $debug = true;
+
 function safeParam($param) {
     return preg_replace("/[^a-zA-Z0-9_-]/", "", $param);
 }
 
-$context1 = isset($_GET['context1']) ? safeParam($_GET['context1']) : "";
-$context2 = isset($_GET['context2']) ? safeParam($_GET['context2']) : "";
-$action   = isset($_GET['action'])   ? safeParam($_GET['action'])   : "";
+$context1 = $_GET['context1'] ?? "";
+$context2 = $_GET['context2'] ?? "";
+$action   = $_GET['action']   ?? "";
+
+$context1 = safeParam($context1);
+$context2 = safeParam($context2);
+$action   = safeParam($action);
 
 include __DIR__ . "/includes/header.php";
 
@@ -14,17 +19,29 @@ $basePath = __DIR__ . "/pages";
 
 if ($context1 === "" && $context2 === "" && $action === "") {
     $pagePath = $basePath . "/main.php";
-} else {
-    $pagePath = $basePath;
-    if ($context1 !== "") $pagePath .= "/" . $context1;
+
+} elseif ($context1 === "api") {
+    $pagePath = $basePath . "/api";
+
     if ($context2 !== "") $pagePath .= "/" . $context2;
     if ($action !== "") {
         $pagePath .= "/" . $action . ".php";
     } else {
-        $pagePath .= "/list.php";
+        $pagePath .= ".php";
     }
-    if($context1 == "Login"){
-        $pagePath = __DIR__ . "/pages/Login/" . $context2 . ".php";
+} elseif ($context1 === "Login") {
+    $pagePath = $basePath . "/Login/" . $context2 . ".php";
+
+} else {
+    $pagePath = $basePath;
+
+    if ($context1 !== "") $pagePath .= "/" . $context1;
+    if ($context2 !== "") $pagePath .= "/" . $context2;
+
+    if ($action !== "") {
+        $pagePath .= "/" . $action . ".php";
+    } else {
+        $pagePath .= "/list.php";
     }
 }
 
@@ -36,5 +53,4 @@ if (file_exists($pagePath)) {
 }
 
 include __DIR__ . "/includes/footer.php";
-
 ?>
