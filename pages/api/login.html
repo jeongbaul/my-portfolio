@@ -26,7 +26,7 @@
           const pw = document.getElementById('pw').value;
 
           // AJAX (fetch)
-          fetch('/pages/api/login.php', {
+          fetch('/pages/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -38,7 +38,7 @@
             .then((data) => {
               if (data.status === 'success') {
                 alert('로그인 성공');
-                location.href = '/index.php'; // 성공 시 이동
+                location.href = '/'; // 성공 시 이동
               } else {
                 alert('로그인 실패. 아이디 또는 비밀번호가 틀렸습니다.');
               }
